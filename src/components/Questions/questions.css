@@ -1,0 +1,28 @@
+.questions-container {
+    padding: 40px 20px;
+}
+
+.questions-container h3 {
+    font-size: 30px;
+}
+
+.question {
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 4px !important;
+}
+
+.search-question {
+    position: absolute;
+    width: 100%;
+    z-index: 6262;
+    left: 0;
+    bottom: 0;
+}
+
+.search-question input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--background);
+    outline: 0;
+}

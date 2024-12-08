@@ -1,0 +1,8 @@
+.course-data div {
+    margin: 5px 0;
+}
+
+.course-data div span {
+    color: var(--background);
+    font-weight: 600 !important;
+}

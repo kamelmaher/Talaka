@@ -1,0 +1,22 @@
+.form-fields {
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.auth label {
+    color: var(--background);
+    font-size: 18px;
+    display: block;
+    width: fit-content;
+    margin-bottom: 8px;
+}
+
+.auth input {
+    padding: 15px 10px;
+    width: 300px;
+}

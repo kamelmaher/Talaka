@@ -1,0 +1,43 @@
+.header {
+    background-color: var(--background);
+    color: var(--primary);
+    padding: 10px 20px;
+}
+
+
+.nav a {
+    color: var(--primary);
+    padding: 0 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: var(--hover);
+}
+
+.hidden-menu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    width: 170px;
+    background-color: var(--secondary);
+    border-radius: 6px;
+}
+
+.hidden-menu a {
+    text-align: center;
+    display: block;
+    padding: 5px 10px;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid var(--primary);
+}
+
+.personal-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}

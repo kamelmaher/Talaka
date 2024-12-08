@@ -1,0 +1,8 @@
+.opinions-section {
+    padding: 40px;
+    background-color: var(--primary);
+    text-align: center;
+}
+.opinions-section h3{
+    font-size: 25px;
+}

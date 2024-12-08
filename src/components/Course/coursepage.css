@@ -1,0 +1,66 @@
+.coursepage {
+    padding: 40px 20px;
+    background-color: var(--primary);
+}
+
+.coursepage p {
+    font-size: 25px;
+}
+
+.coursepage .more p {
+    font-size: 20px !important;
+}
+
+.course-heading {
+    font-size: 35px !important;
+    color: var(--secondary);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.coursepage ol li {
+    width: 90%;
+    margin: 30px auto;
+    font-size: 23px;
+}
+
+.subscribe {
+    text-align: center;
+    width: 400px;
+    border: 2px solid var(--background);
+    padding-bottom: 20px;
+    height: fit-content;
+}
+
+.subscribe-heading {
+    padding: 20px;
+    border-bottom: 2px solid var(--background);
+}
+
+.course-price {
+    margin-bottom: 10px;
+    color: var(--background);
+}
+
+.subscribe-heading span {
+    font-size: 17px;
+}
+
+.course-price span {
+    font-size: 20px;
+}
+
+.subscribe-body {
+    padding: 15px 15px 0;
+}
+
+.subscribe-body p {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.subscribe-body.year p {
+    font-size: 20px;
+    color: var(--background);
+}

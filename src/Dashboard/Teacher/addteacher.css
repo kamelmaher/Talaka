@@ -1,0 +1,27 @@
+.form-box div {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-box label {
+    width: 80px;
+    min-width: fit-content;
+}
+
+.form-box input,
+.form-box textarea {
+    width: 200px;
+}
+
+.form-box textarea {
+    min-height: 60px;
+}
+
+.course-to-teacher {
+    position: absolute;
+    width: 100%;
+    
+}
