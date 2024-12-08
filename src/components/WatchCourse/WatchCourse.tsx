@@ -3,6 +3,7 @@ import "./watchcourse.css"
 import CourseVideos from "./CourseVideos"
 import CourseComments from "./VideoComments"
 import VideoDetails from "./VideoDetails"
+import myVideo from "/video.mp4"
 const WatchCourse = () => {
     return (
         <Box
@@ -39,7 +40,7 @@ const WatchCourse = () => {
                     <Box
                         flex={"1"}
                     >
-                        <video src={""} controls className="img-fix"></video>
+                        <video src={myVideo} controls className="img-fix"></video>
                     </Box>
                     <Box
                         display={"flex"}
