@@ -12,8 +12,13 @@
 }
 
 .form-box input,
-.form-box textarea {
+.form-box textarea,
+.form-box select {
     width: 200px;
+}
+
+.form-box select {
+    padding: 10px;
 }
 
 .form-box textarea {
@@ -23,5 +28,5 @@
 .course-to-teacher {
     position: absolute;
     width: 100%;
-    
+
 }

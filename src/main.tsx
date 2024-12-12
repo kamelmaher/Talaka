@@ -20,6 +20,7 @@ import AddCourse from './Dashboard/Course/AddCourse.tsx'
 import AddVideo from './Dashboard/Course/AddVideo.tsx'
 import Courses from './components/Course/Courses.tsx'
 import WatchContainer from './sections/WatchCourse/WatchContainer.tsx'
+import AddLevel from './Dashboard/Course/AddLevel.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
                     <Route path='addteacher' element={<AddTeacher />}></Route>
                     <Route path='addcourse' element={<AddCourse />}></Route>
                     <Route path='addvideo' element={<AddVideo />}></Route>
+                    <Route path='addLevel/:courseid' element={<AddLevel />}></Route>
                 </Route>
             </Route>
             <Route path='/auth' element={<AuthContainer />}>

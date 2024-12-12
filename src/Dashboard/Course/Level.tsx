@@ -1,17 +1,16 @@
 import { Box } from "@mui/material"
-import { Video } from "../../types/Video"
 import { useNavigate } from "react-router-dom"
+import { Level as LevelType } from "../../types/Level"
 type LevelProps = {
-    level: number
-    videos: Video[]
+    level: LevelType
 }
-const Level = ({ level, videos }: LevelProps) => {
+const Level = ({ level }: LevelProps) => {
     const navigate = useNavigate()
     return (
         <Box
             padding={"5px"}
         >
-            <p style={{ marginBottom: "10px", color: "var(--background)" }}>المستوى {level}</p>
+            <p style={{ marginBottom: "10px", color: "var(--background)" }}>المستوى {level.level}</p>
 
             {/* Videos */}
             <Box
@@ -20,15 +19,15 @@ const Level = ({ level, videos }: LevelProps) => {
                 flexWrap={"wrap"}
             >
                 {
-                    videos.map(e => {
+                    level.videos.map(e => {
                         return <Box
-                            width={"fit-content"}
-                            display={"flex"}
-                            onClick={() => navigate(`/watch/0}`)}
                             key={e.id}
+                            width={"fit-content"}
+                            onClick={() => navigate(`/watch/${e.id}}`)}
+                            textAlign={"center"}
                         >
                             <Box
-                                width={"60px"}
+                                width={"80px"}
                             >
                                 <img src={e.img} className="img-fix" />
                             </Box>

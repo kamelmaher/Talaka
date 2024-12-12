@@ -1,8 +1,12 @@
 /** @format */
 
+import { Level } from "./Level";
+import { Teacher } from "./Teacher";
+
 export type Course = {
   courseId: number;
   courseName: string;
-  levels: number;
+  levels: Level[];
   videoCount: number;
+  Teacher: Teacher;
 };

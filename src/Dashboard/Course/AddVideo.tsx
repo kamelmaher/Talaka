@@ -16,7 +16,11 @@ const AddVideo = () => {
                     </Box>
                     <Box>
                         <label>المستوى</label>
-                        <input type="number" />
+                        <select>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
                     </Box>
                     <Box>
                         <label>تحميل</label>
