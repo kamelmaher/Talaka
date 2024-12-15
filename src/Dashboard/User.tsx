@@ -1,20 +1,22 @@
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import Person from "/picture.jpg"
-import CourseToUser from "./CourseToUser"
 import { User as UserType } from "../types/User"
 import { Course } from "../types/Course"
 import { useState } from "react"
 
 export type AddCourse = {
     level: number,
-    name: string
+    name: string,
+    plan: number
 }
 const User = () => {
     const [adding, setAdding] = useState(false)
+    const [nameSelected, setNameSelected] = useState(false)
     const [newUser, setNewUser] = useState<UserType>({
         id: 0,
         fname: "Kamel",
         lname: "maher",
+        age: 12,
         progress: [],
         email: "",
         password: ""
@@ -23,20 +25,38 @@ const User = () => {
         {
             courseId: 0,
             courseName: "انجليزي",
-            levels: 6,
-            videoCount: 20
+            levels: [],
+            videoCount: 20,
+            Teacher: {
+                id: 0,
+                name: "",
+                email: "",
+                courses: []
+            }
         },
         {
             courseId: 1,
             courseName: "الماني",
-            levels: 3,
-            videoCount: 15
+            levels: [],
+            videoCount: 15,
+            Teacher: {
+                id: 0,
+                name: "",
+                email: "",
+                courses: []
+            }
         },
         {
             courseId: 2,
             courseName: "ايطالي",
-            levels: 4,
-            videoCount: 16
+            levels: [],
+            videoCount: 15,
+            Teacher: {
+                id: 0,
+                name: "",
+                email: "",
+                courses: []
+            }
         },
     ]
 
@@ -46,26 +66,14 @@ const User = () => {
     //         if (progress.course.courseId == course.courseId) return course
     //     })
     // })
-
-    const [selectedCourses, setSelectedCourses] = useState<AddCourse[]>([])
-    const selectCourse = (course: AddCourse) => {
-        let found = false
-        selectedCourses.map(e => {
-            if (e.name == course.name) {
-                found = true
-                setSelectedCourses(selectedCourses.filter(selectedCourse => selectedCourse.name != course.name))
-            }
-        })
-        if (!found)
-            setSelectedCourses([...selectedCourses, course])
-    }
+    const [editPlan, setEditPlan] = useState(false)
+    const [newPlan, setNewPlan] = useState(0)
+    const [selectedCourse, setSelectedCourse] = useState<AddCourse>({ level: 0, name: "", plan: 1 })
     const addCoursesToUser = () => {
         myCourses.map(myCourse => {
-            selectedCourses.map(course => {
-                if (course.name == myCourse.courseName) {
-                    setNewUser({ ...newUser, progress: [...newUser.progress, { course: myCourse, level: course.level, finished: 0 }] })
-                }
-            })
+            if (selectedCourse.name == myCourse.courseName) {
+                setNewUser({ ...newUser, progress: [...newUser.progress, { course: myCourse, level: selectedCourse.level, finished: 0, startDate: 2, plan: selectedCourse.plan }] })
+            }
         })
     }
     return (
@@ -118,7 +126,7 @@ const User = () => {
                     padding={"15px"}
                     overflow={"auto"}
                 >
-                    <h4 style={{ fontSize: "20px", color: "var(--background)", textAlign: "center" }}>الكورسات </h4>
+                    <h4 style={{ fontSize: "20px", color: "var(--background)", textAlign: "center", marginBottom: "10px" }}>الكورسات </h4>
                     {
                         newUser.progress.length > 0 ?
                             <Table
@@ -132,7 +140,8 @@ const User = () => {
                                         <th>المستويات</th>
                                         <th>المستوى الحالي</th>
                                         <th>فيديوهات تمت مشاهدتها</th>
-                                        <th>انتهاء الاشتراك</th>
+                                        <th>مدة الاشتراك</th>
+                                        <th>تعديل الاشتراك</th>
                                         <th>حذف</th>
                                     </TableRow>
                                 </TableHead>
@@ -141,13 +150,29 @@ const User = () => {
                                         newUser.progress.map(e => {
                                             return <TableRow>
                                                 <TableCell>{e.course.courseName}</TableCell>
-                                                <TableCell>كامل ماهر</TableCell>
+                                                <TableCell>{e.course.Teacher.name}</TableCell>
                                                 <TableCell>25 / 2 / 2024</TableCell>
-                                                <TableCell>{e.course.levels}</TableCell>
+                                                <TableCell>{e.course.levels.length}</TableCell>
                                                 <TableCell>{e.level}</TableCell>
                                                 <TableCell>{e.finished}</TableCell>
-                                                <TableCell>25/5/2024</TableCell>
-                                                <TableCell><Button variant="contained" color="error">حذف</Button></TableCell>
+                                                <TableCell>
+                                                    {editPlan ?
+                                                        <input type="number" onChange={(e) => { setNewPlan(+e.target.value) }} />
+                                                        :
+                                                        <>
+                                                            {e.plan}  شهور
+                                                        </>
+                                                    }
+
+                                                </TableCell>
+                                                <TableCell><Button variant="contained" onClick={() => {
+                                                    if (editPlan) {
+                                                        setEditPlan(false)
+                                                        // Api Request
+                                                        e.plan = newPlan
+                                                    } else setEditPlan(true)
+                                                }}>تعديل</Button></TableCell>
+                                                <TableCell><Button variant="contained" color="error" onClick={() => { }}>حذف</Button></TableCell>
                                             </TableRow>
                                         })
                                     }
@@ -174,6 +199,7 @@ const User = () => {
                     bgcolor={"#0f0f0f6b"}
                 >
                     <Box
+                        textAlign={"center"}
                         className="add-course-to-user"
                     >
                         اضافة كورس للطالب
@@ -181,15 +207,60 @@ const User = () => {
                             mt={"15px"}
                         >
                             <form>
-                                {
-                                    myCourses.map(course => <CourseToUser key={course.courseId} addCourse={selectCourse} name={course.courseName} levels={course.levels} />)
-                                }
+                                <Box
+                                    width={"250px"}
+                                    mb={"10px"}
+                                >
+                                    <select
+                                        style={{ width: "150px", marginBottom: "10px" }}
+                                        className="pointer"
+                                        onChange={(e) => {
+                                            setNameSelected(true)
+                                            setSelectedCourse({ ...selectedCourse, name: e.target.value })
+                                        }}
+                                    >
+                                        <option value="اختر كورس">اختر كورس</option>
+                                        <option value="انجليزي">انجليزي</option>
+                                        <option value="الماني">الماني</option>
+                                        <option value="ايطالي">ايطالي</option>
+                                    </select>
+                                    {
+                                        nameSelected &&
+                                        <>
+                                            <select
+                                                style={{ width: "150px", marginBottom: "10px" }}
+                                                className="pointer"
+                                                onChange={(e) => setSelectedCourse({ ...selectedCourse, level: +e.target.value })}
+                                            >
+                                                <option value="المستوى">المستوى</option>
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                            <select
+                                                style={{ width: "150px" }}
+                                                className="pointer"
+                                                onChange={(e) => setSelectedCourse({ ...selectedCourse, plan: +e.target.value })}
+                                            >
+                                                <option value="مدة الاشتراك">مدة الاشتراك</option>
+                                                <option value="1"> شهر</option>
+                                                <option value="3">3 شهور</option>
+                                                <option value="6">6 شهور</option>
+                                                <option value="12">12 شهر</option>
+                                            </select>
+                                        </>
+                                    }
+                                </Box>
                                 <Button
                                     variant="contained"
                                     style={{ margin: "auto", display: "block" }}
-                                    onClick={() => {
-                                        addCoursesToUser()
-                                        setAdding(false)
+                                    onClick={(e) => {
+                                        if (selectedCourse.name == "")
+                                            e.preventDefault()
+                                        else {
+                                            addCoursesToUser();
+                                            setAdding(false)
+                                        }
                                     }}
                                 >اضافة</Button>
                             </form>

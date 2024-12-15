@@ -5,9 +5,11 @@ import { faBars, faBell, faUserCircle, faX } from '@fortawesome/free-solid-svg-i
 import { useState } from 'react';
 import "./header.css"
 import Links from './Links';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const Header = () => {
+    const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false)
+    const [showUserMenu, setShowUserMenu] = useState(false)
     const auth = true
     const handleMenuClick = (e: boolean) => {
         setShowMenu(e)
@@ -33,22 +35,44 @@ const Header = () => {
                 display={"flex"}
                 gap={2}
                 alignItems={"center"}
-
+                position={"relative"}
             >
                 {
                     auth ?
                         <>
                             {/* If Regiestered  */}
                             <FontAwesomeIcon icon={faBell} className='pointer' style={{ fontSize: "20px " }}></FontAwesomeIcon>
-                            <NavLink to={'/user/1'}>
+                            <Box onClick={() => setShowUserMenu(!showUserMenu)}>
                                 <img src={logo} alt="Personal-img" className='personal-img pointer' />
-                            </NavLink>
+                            </Box>
+                            {
+                                showUserMenu &&
+                                <Box
+                                    position={"absolute"}
+                                    bgcolor={"var(--secondary)"}
+                                    left={-10}
+                                    bottom={-10}
+                                    className="user-menu pointer"
+                                >
+                                    <ul>
+                                        <li
+                                            onClick={() => navigate("/user/1")}
+                                        >
+                                            حسابي
+                                        </li>
+                                        <li>
+                                            تسجيل الخروج
+                                        </li>
+                                    </ul>
+
+                                </Box>
+                            }
                         </>
                         :
                         <>
                             {/* If  Not Regiestered  */}
                             <FontAwesomeIcon icon={faUserCircle} className='person-icon ' style={{ fontSize: "22px " }}></FontAwesomeIcon>
-                            <NavLink to={"/login"}>
+                            <NavLink to={"/auth/login"}>
                                 <span className='pointer hover-color' style={{ color: "white" }}>تسجيل الدخول</span>
                             </NavLink>
                         </>

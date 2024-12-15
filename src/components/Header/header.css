@@ -41,3 +41,14 @@
     height: 30px;
     border-radius: 50%;
 }
+
+.user-menu {
+    text-align: center;
+    width: 100px;
+    transform: translateY(100%);
+}
+
+.user-menu li {
+    padding: 10px;
+    border-bottom: 1px solid white;
+}

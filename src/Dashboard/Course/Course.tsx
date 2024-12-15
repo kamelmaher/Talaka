@@ -46,7 +46,7 @@ const Course = () => {
                     >الفيديوهات</p>
                     <Box>
                         {
-                            levels.map(level => <Level level={level} />)
+                            levels.map(level => <Level key={level.level} level={level} />)
                         }
                     </Box>
                 </Box>

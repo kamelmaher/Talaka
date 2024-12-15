@@ -27,14 +27,6 @@ const CourseVideos = () => {
                 {
                     levels.map(level => <CourseLevel level={level} />)
                 }
-                {/* <CourseVideo name="فيديو 1" time={12} desc="فيديو يتحدث عن اللغة الانجليزية " watched={true} />
-                <CourseVideo name="فيديو 2" time={9} desc="فيديو يتحدث عن اللغة الألمانية " watched={true} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} />
-                <CourseVideo name="فيديو 3" time={5} desc="فيديو يتحدث عن مخرجات الكورس " watched={false} /> */}
             </Box>
         </Box>
     )

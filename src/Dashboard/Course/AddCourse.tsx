@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material"
 import "../Teacher/addteacher.css"
+import axios from "axios"
 const AddCourse = () => {
     return (
         <Box
@@ -37,12 +38,23 @@ const AddCourse = () => {
                             <label>نبذة مختصرة</label>
                             <textarea id=""></textarea>
                         </Box>
-                        <Button variant="contained">اضافة</Button>
+                        <Button
+                            variant="contained"
+                            onClick={() => {
+                                const data = new FormData()
+                                data.append("Name", "Course 1")
+                                data.append("Description", "Test Test")
+                                data.append("ImageCover", "")
+                                data.append("IsActive", "true")
+                                data.append("CreatedAt", (new Date()).toDateString())
+                                axios.post("https://coursesapi23.runasp.net/api/Courses", data).then((data) => console.log(data))
+                            }}
+                        >اضافة</Button>
                     </form>
                 </Box>
             </Box>
 
-        </Box>
+        </Box >
     )
 }
 

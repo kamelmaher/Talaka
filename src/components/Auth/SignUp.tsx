@@ -3,19 +3,18 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { User } from "../../types/User"
 import { useState } from "react"
 import { getError } from "../../Logic.tsx/Auth"
-
-
+import axios from "axios"
 
 const SignUp = () => {
     const navigate = useNavigate()
     const [newUser, setNewUser] = useState<User>({
         id: 0,
+        age: 20,
         fname: "",
         lname: "",
         email: "",
         password: "",
         progress: [],
-        courses: []
     })
     const [errMessage, setErrMessage] = useState({
         passWordNotMAtch: false,
@@ -49,14 +48,23 @@ const SignUp = () => {
     // }
 
     const SignUp = () => {
-        localStorage.setItem("users", JSON.stringify(newUser))
+        const data = new FormData();
+        data.append('FirstName', "kamel");
+        data.append('LastName', "maher");
+        data.append('Email', "kamelmaher@gmail.com");
+        data.append('Password', "kamel123");
+        data.append('ConfirmPassword', "kamel123");
+        data.append('Mobile', "0598691698");
+        data.append('Image', "");
+        axios.post("https://coursesapi23.runasp.net/api/Account/register", data
+        ).then(({ data }) => { console.log(data) })
     }
     const createUser = () => {
-        if (checkNotEmpty() && checkVaildEmail() && checkCorrectPass()) {
-            SignUp()
-            setErrMessage({ ValuesAreEmpty: false, notValidEmail: false, passWordNotMAtch: false })
-            navigate("/auth/login")
-        }
+        // if (checkNotEmpty() && checkVaildEmail() && checkCorrectPass()) {
+        SignUp()
+        // setErrMessage({ ValuesAreEmpty: false, notValidEmail: false, passWordNotMAtch: false })
+        // navigate("/auth/login")
+        // }
     }
     return (
         <form>
@@ -98,7 +106,17 @@ const SignUp = () => {
                     errMessage.notValidEmail && getError("Not a Valid Email")
                 }
                 <Button variant="contained"
-                    onClick={() => createUser()}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        const data = new FormData();
+                        data.append('FirstName', "kamel");
+                        data.append('LastName', "maher");
+                        data.append('Email', "kamelmaher@gmail.com");
+                        data.append('Password', "kamel123");
+                        data.append('ConfirmPassword', "kamel123");
+                        data.append('Mobile', "+970598691698");
+                        axios.post("https://coursesapi23.runasp.net/api/Account/register", data).then(({ data }) => { console.log(data) })
+                    }}
                 >انشاء</Button>
             </Box>
             <NavLink to={"/auth/login"}>لديك  حساب بالفعل ؟</NavLink>

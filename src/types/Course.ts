@@ -9,4 +9,5 @@ export type Course = {
   levels: Level[];
   videoCount: number;
   Teacher: Teacher;
+  desc: string;
 };

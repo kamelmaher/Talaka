@@ -16,6 +16,5 @@ export type Progress = {
   level: number;
   finished: number;
   startDate: number;
-  endDate: number;
   plan: number;
 };

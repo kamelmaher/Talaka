@@ -8,9 +8,12 @@ type CourseLevelProps = {
 }
 
 const CourseLevel = ({ level }: CourseLevelProps) => {
+
     const [showVideos, setShowVideos] = useState(false)
     return (
-        <Box>
+        <Box
+            borderBottom={"1px solid white"}
+        >
             <h4
                 className="pointer"
                 style={{ background: "var(--background)", padding: "15px 10px", color: "white" }}
@@ -21,7 +24,8 @@ const CourseLevel = ({ level }: CourseLevelProps) => {
                 overflow={"auto"}
             >
                 {
-                    showVideos &&
+
+                    (level.level == 0 || showVideos) &&
                     level.videos.map(video => <CourseVideo key={video.id} name={"فيديو 1"} desc={"الفيديو الأول"} time={5} watched={true} />)
                 }
             </Box>
